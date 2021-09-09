@@ -18,6 +18,3 @@ Kuka Python is a library that allows for the creation of KUKA KR4 control files 
 >
 > myRobot.saveFile("example.src")
 
-## Installation
-
-> The installation instructions are low priority in the readme and should come at the bottom. The first part answers all their objections and now that they want to use it, show them how.
