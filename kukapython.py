@@ -7,7 +7,7 @@
     University of Texas at Austin School of Architecture
 """
 
-class pyKUKA:
+class kukapython:
 
     def __init__(self,name):
         #self.x = x
@@ -66,12 +66,21 @@ class pyKUKA:
 
     def setBaseCoordinates(self,x,y,z,a,b,c):
         if(self.BASE_IS_DEFINED == False):
-            self.code.append("$TOOL={X "+str(x)+", Y "+str(y)+", Z "+str(z)+", A "+str(a)+", B "+str(b)+", C "+str(c)+"}")
+            self.code.append("$BASE={X "+str(x)+", Y "+str(y)+", Z "+str(z)+", A "+str(a)+", B "+str(b)+", C "+str(c)+"}")
             self.BASE_IS_DEFINED = True
             return
         raise Exception('You have already defined a base. Either use setToolNumber or setToolCoordinates but not both.')
 
-
+    def setVelocity(self,velocity):
+        self.code.append("$advance=5")
+        self.code.append("$VEL.CP="+str(velocity))
+           
+    def PTP(self,a1,a2,a3,a4,a5,a6,e1,e2):
+        self.code.append("PTP {A1 "+str(a1)+", A2 "+str(a2)+", A3 "+str(a3)+", A4 "+str(a4)+", A5 "+str(a5)+", A6 "+str(a6)+", E1 "+str(e1)+", E2 "+str(e2)+", E3 0, E4 0, E5 0, E6 0}")
+    
+    def LIN(self,x,y,z,a,b,c,e1,e2):
+        self.code.append("LIN {X "+str(x)+", Y "+str(y)+", Z "+str(z)+", A "+str(a)+", B "+str(b)+", C "+str(c)+", E1 "+str(e1)+", E2 "+str(e2)+"} C_DIS")
+    
 #---------------------------------------------------------------------------
 # Export the code as a file
 #---------------------------------------------------------------------------
