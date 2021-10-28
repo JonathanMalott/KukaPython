@@ -5,7 +5,7 @@
     Create KUKA src files easily in python that run on KUKA KR4 robots.
     AUTHOR: Jonathan Malott (JonathanMalott.com)
     University of Texas at Austin School of Architecture
-    v0.2 Edited October 18 2021
+    v0.3 Edited October 26 2021
 """
 class kukapython:
 
@@ -100,7 +100,7 @@ class kukapython:
     def setVelocity(self,velocity):
         self.code.append("$VEL.CP="+str(velocity))
     
-    def wait(self,waitTime):
+    def WAIT(self,waitTime):
         self.code.append("WAIT sec "+str(waitTime))
     
 
@@ -110,6 +110,11 @@ class kukapython:
     def LIN(self,x,y,z,a,b,c,e1,e2):
         self.code.append("LIN {X "+str(x)+", Y "+str(y)+", Z "+str(z)+", A "+str(a)+", B "+str(b)+", C "+str(c)+", E1 "+str(e1)+", E2 "+str(e2)+"} C_DIS")
     
+    def CIRC(self,x1,y1,z1,a1,b1,c1,e11,e21,x2,y2,z2,a2,b2,c2,e12,e22):
+        self.code.append("CIRC {X "+str(x1)+", Y "+str(y1)+", Z "+str(z1)+", A "+str(a1)+", B "+str(b1)+", C "+str(c1)+", E1 "+str(e11)+", E2 "+str(e21)+"},{X "+str(x2)+", Y "+str(y2)+", Z "+str(z2)+", A "+str(a2)+", B "+str(b2)+", C "+str(c2)+", E1 "+str(e12)+", E2 "+str(e22)+"} C_DIS")
+    
+
+
     def LIN_REL(self,x=False,y=False,z=False,a=False,b=False,c=False,e1=False,e2=False):
         st = []
         if(x):
@@ -138,6 +143,35 @@ class kukapython:
         app += st[-1]
 
         self.code.append("LIN_REL {"+app+"} C_DIS")
+
+    def PTP_REL(self,a1=False,a2=False,a3=False,a4=False,a5=False,a6=False,e1=False,e2=False):
+        st = []
+        if(a1):
+            st.append("A1 "+str(a1))
+        if(a2):
+            st.append("A2 "+str(a2))
+        if(a3):
+            st.append("A3 "+str(a3))
+        if(a4):
+            st.append("A4 "+str(a4))
+        if(a5):
+            st.append("A5 "+str(a5))
+        if(a6):
+            st.append("A6 "+str(a6))
+        if(e1):
+            st.append("E1 "+str(e1))
+        if(e2):
+            st.append("E2 "+str(e2))
+        
+        assert len(st) > 0
+
+        app = ""
+
+        for s in range(len(st)-1):
+            app += st[s] + ", "
+        app += st[-1]
+
+        self.code.append("PTP_REL {"+app+"} C_DIS")
     
 
     def COMMENT(self,text):
@@ -165,6 +199,8 @@ class kukapython:
 
         #Write each line of the KUKA src program to the specified file
         fileOut = open(filename,"w")
-        for line in self.code:
-            fileOut.write(line + "\n")
+        for line in range(len(self.code)-1):
+            fileOut.write(self.code[line] + "\n")
+
+        fileOut.write(self.code[-1])
       
