@@ -5,7 +5,7 @@
     Create KUKA src files easily in python that run on KUKA KR4 robots.
     AUTHOR: Jonathan Malott (JonathanMalott.com)
     University of Texas at Austin School of Architecture
-    v0.3 Edited October 26 2021
+    v0.3.2 Edited November 15 2021
 """
 class kukapython:
 
@@ -90,6 +90,7 @@ class kukapython:
         raise Exception('You have already defined a base. Either use setToolNumber or setToolCoordinates but not both.')
 
 
+
     def setBaseCoordinates(self,x,y,z,a,b,c):
         if(self.BASE_IS_DEFINED == False):
             self.code.append("$BASE={X "+str(x)+", Y "+str(y)+", Z "+str(z)+", A "+str(a)+", B "+str(b)+", C "+str(c)+"}")
@@ -99,7 +100,21 @@ class kukapython:
 
     def setVelocity(self,velocity):
         self.code.append("$VEL.CP="+str(velocity))
+
+    def openFold(self,comment):
+        self.code.append(";FOLD "+str(comment))
+
+    def closeFold(self):
+        self.code.append(";ENDFOLD")
     
+#---------------------------------------------------------------------------
+# The following methods deal with inputs and outputs
+#---------------------------------------------------------------------------
+
+    def setOutput(self, outputNumber, state):
+        self.code.append("$OUT["+str(outputNumber)+"] = "+str(state))
+          
+
     def WAIT(self,waitTime):
         self.code.append("WAIT sec "+str(waitTime))
     
