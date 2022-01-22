@@ -5,7 +5,7 @@
 Kuka Python is a library that allows for the creation of KUKA KR4 control files using simple, friendly python
 
 ## Code Samples
-```
+```python
 from pyKUKA import pyKUKA	
 
 myRobot  = pyKUKA("ExampleProgramName")
