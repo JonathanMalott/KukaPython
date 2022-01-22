@@ -1,9 +1,6 @@
 # KUKA Python
 
-![This is an image](https://jonathanmalott.com/wp-content/uploads/2021/11/1.jpg)
 ![This is an image](https://jonathanmalott.com/wp-content/uploads/2021/12/david-675x450.png)
-
-
 
 ## Introduction
 
