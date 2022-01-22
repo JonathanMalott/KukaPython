@@ -1,10 +1,15 @@
 # KUKA Python
 
+![This is an image](https://jonathanmalott.com/wp-content/uploads/2021/11/1.jpg)
+![This is an image](https://jonathanmalott.com/portfolio/playing-music-with-kuka-robotic-arms-2/)
+
+
+
 ## Introduction
 
-Kuka Python is a library that allows for the creation of KUKA KR4 control files using simple, friendly python
+Kuka Python is a library that allows for the creation of KUKA KR4 control files using simple, friendly python.
 
-## Code Samples
+## Basic KUKApython program
 ```python
 from pyKUKA import pyKUKA	
 
@@ -18,3 +23,4 @@ myRobot.setBaseCoordinates(-100,1600,828,-90,0,0)
 
 myRobot.saveFile("example.src")
 ```
+
